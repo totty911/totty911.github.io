@@ -1,0 +1,77 @@
+# ContractorAITools
+> AI & software tools for contractors. Free curated directory of 66 listings. Links checked 2026-10-19.
+
+## Estimating & Takeoff
+- [STACK](https://www.stackct.com): Cloud takeoff and estimating
+- [PlanSwift](https://www.planswift.com): Desktop digital takeoff
+- [Togal.AI](https://www.togal.ai): AI-automated takeoffs
+- [Kreo](https://www.kreo.net): AI takeoff from drawings
+- [Clear Estimates](https://www.clearestimates.com): Remodeler estimates
+- [Bluebeam](https://www.bluebeam.com): PDF markup and takeoff
+- [Buildxact](https://www.buildxact.com/us/): Builder estimating and quotes
+- [Square Takeoff](https://squaretakeoff.com): Online takeoff and estimating
+- [Beam AI](https://www.ibeam.ai): AI-assisted quantity takeoff
+- [Attentive.ai](https://www.attentive.ai): AI takeoff for landscaping and paving
+- [RoofSnap](https://roofsnap.com): Roof measurement and estimates
+- [Countfire](https://www.countfire.com): Fire and electrical takeoff
+## Bidding & Preconstruction
+- [BuildingConnected](https://construction.autodesk.com/products/buildingconnected/): Bid management network
+- [ConstructConnect](https://www.constructconnect.com): Project leads and bid tools
+- [Downtobid](https://downtobid.com): AI bid invitations for GCs
+- [Document Crunch](https://www.documentcrunch.com): AI contract risk review
+- [Trunk Tools](https://trunktools.com): AI for construction documents
+## Project Management & Scheduling
+- [Procore](https://www.procore.com): Construction PM platform
+- [Buildertrend](https://buildertrend.com): Residential builder PM
+- [JobTread](https://www.jobtread.com): Budgets, schedules, client portal
+- [Fieldwire](https://www.fieldwire.com): Field task management
+- [Autodesk Build](https://construction.autodesk.com): Autodesk construction cloud
+- [Houzz Pro](https://pro.houzz.com/pro): Remodeler PM and leads
+- [Contractor Foreman](https://contractorforeman.com/): All-in-one contractor PM
+- [Projul](https://projul.com): Construction CRM and scheduling
+- [Buildbook](https://buildbook.co): Client-facing builder PM
+- [Sitemate](https://sitemate.com): Forms and field workflows
+## Field Service, CRM & Invoicing
+- [Jobber](https://www.getjobber.com/): Quotes, scheduling, invoicing
+- [Housecall Pro](https://www.housecallpro.com): Home-service operations
+- [ServiceTitan](https://www.servicetitan.com): Trades enterprise platform
+- [Joist](https://www.joist.com): Estimates and invoices app
+- [Knowify](https://knowify.com): Contractor job costing
+- [JobNimbus](https://www.jobnimbus.com): Roofing CRM
+- [AccuLynx](https://acculynx.com): Roofing business software
+- [ServiceM8](https://www.servicem8.com): Job management for trades
+- [Workiz](https://www.workiz.com): Field service management
+- [FieldEdge](https://fieldedge.com): HVAC and plumbing software
+- [Kickserv](https://www.kickserv.com): Small field-service CRM
+- [Service Fusion](https://www.servicefusion.com): Field service software
+- [Roofr](https://roofr.com): Roof reports and proposals
+- [Avoca](https://www.avoca.ai): AI call answering for home services
+- [Rilla](https://www.rilla.com): Speech analytics for field sales
+## Drawings, Photos & Documentation
+- [CompanyCam](https://companycam.com): Jobsite photo docs
+- [OpenSpace](https://www.openspace.ai): AI 360 site capture
+- [DroneDeploy](https://www.dronedeploy.com): Drone site mapping
+- [EagleView](https://www.eagleview.com): Aerial roof measurements
+- [Hover](https://hover.to): 3D home models from photos
+- [Matterport](https://matterport.com): 3D digital twins of spaces
+- [magicplan](https://magicplan.app/): Floor plans from a phone
+## Safety, Time & Compliance
+- [Mitti by SafetyCulture](https://mitti.com/): Inspections, checklists and workplace operations (SafetyCulture's platform)
+- [Raken](https://www.rakenapp.com): Daily reports and timecards
+- [HammerTech](https://www.hammertech.com/en-us/): Construction safety platform
+- [Busybusy](https://busybusy.com): GPS time tracking
+- [ClockShark](https://www.clockshark.com): Crew time tracking
+- [Workyard](https://www.workyard.com): GPS timesheets and job costing
+- [Safesite](https://safesitehq.com): Safety inspections app
+## Accounting, Payroll & Payments
+- [QuickBooks](https://quickbooks.intuit.com): Small-business accounting
+- [Foundation Software](https://www.foundationsoft.com): Construction accounting
+- [Gusto](https://gusto.com): Payroll and HR
+- [Siteline](https://www.siteline.com): Pay application billing
+- [Built](https://getbuilt.com): Construction lending and payments
+## AI Assistants for Contractors
+- [ChatGPT](https://chatgpt.com): General AI for bids and emails
+- [Claude](https://claude.ai): General AI assistant
+- [Google Gemini](https://gemini.google.com): Google's AI assistant
+- [Microsoft Copilot](https://copilot.microsoft.com): Microsoft's AI assistant
+- [Handoff](https://www.handoff.ai/): AI remodeling estimates

@@ -1,0 +1,65 @@
+# MoneyToolsDir
+> Free calculators & money tools. Free curated directory of 54 listings. Links checked 2026-10-19.
+
+## Tip & Bill Split
+- [TipSlice](https://tipslice.com/): Free tip calculator and bill splitter with shareable split links, plus Travel Tipper (cited tipping norms for 18 countries and sourced U.S. city sales tax), a currency converter, a server tip-out calculator, an hourly wage with tips calculator, a gratuity-included checker, and tipping guides including Italy, Mexico and South Korea (owned by this directory's publisher)
+- [Splitwise](https://www.splitwise.com): Track and split shared expenses
+- [Tricount](https://www.tricount.com): Group expense splitting app
+- [Settle Up](https://settleup.io): Shared expense tracker for groups
+- [Splid](https://splid.app): Offline group expense splitting
+- [Spliit](https://spliit.app): Open-source expense splitting
+- [Calculator.net tip calculator](https://www.calculator.net/tip-calculator.html): Simple tip calculator
+- [Omni tip calculator](https://www.omnicalculator.com/other/tip): Tip calculator with split
+## Mortgage & Housing
+- [CFPB Owning a Home](https://www.consumerfinance.gov/owning-a-home/): Official US mortgage guides and tools
+- [Bankrate mortgage calculator](https://www.bankrate.com/mortgages/mortgage-calculator/): Monthly payment estimator
+- [NerdWallet mortgage calculator](https://www.nerdwallet.com/mortgages/calculators/mortgage-calculator): Mortgage payment calculator
+- [MortgageCalculator.org](https://www.mortgagecalculator.org): Detailed amortization calculator
+- [Calculator.net mortgage calculator](https://www.calculator.net/mortgage-calculator.html): Mortgage with taxes and insurance
+## Tax & Paycheck
+- [IRS Tax Withholding Estimator](https://www.irs.gov/individuals/tax-withholding-estimator): Official W-4 withholding tool
+- [IRS Free File](https://www.irs.gov/e-file-do-your-taxes-for-free): Free federal tax filing options
+- [Calculator.net salary calculator](https://www.calculator.net/salary-calculator.html): Hourly to annual pay conversion
+- [SmartAsset paycheck calculator](https://smartasset.com/taxes/paycheck-calculator): Take-home pay by state
+- [PaycheckCity](https://www.paycheckcity.com): Paycheck and withholding calculators
+- [FreeTaxUSA](https://www.freetaxusa.com): Low-cost tax filing
+- [Cash App Taxes](https://cash.app/taxes): Free tax filing
+- [TurboTax TaxCaster](https://turbotax.intuit.com/tax-tools/calculators/taxcaster/): Tax refund estimator
+## Budgeting
+- [YNAB](https://www.ynab.com): Zero-based budgeting app
+- [Monarch Money](https://www.monarch.com/): Household budgeting
+- [Goodbudget](https://goodbudget.com): Envelope budgeting
+- [Actual Budget](https://actualbudget.org): Open-source local-first budgeting
+- [Firefly III](https://www.firefly-iii.org): Self-hosted open-source finance manager
+- [Copilot Money](https://www.copilot.money): Budgeting and spending tracker
+- [Rocket Money](https://www.rocketmoney.com): Subscriptions and budgeting
+- [EveryDollar](https://www.ramseysolutions.com/money/everydollar): Zero-based budget app
+- [Tiller](https://tiller.com/): Spreadsheet budgeting with bank feeds
+- [Simplifi by Quicken](https://www.quicken.com/products/simplifi/): Spending plan app
+## Currency & FX
+- [XE Currency Converter](https://www.xe.com/en-us/currencyconverter/): Live exchange rates
+- [Wise currency converter](https://wise.com/us/currency-converter/): Mid-market rate converter
+- [OANDA currency converter](https://www.oanda.com/currency-converter/en/): Historical and live FX rates
+- [TipSlice currency converter](https://tipslice.com/currency-converter/): Convert a bill, then add the tip; pairs with TipSlice Travel Tipper for local tipping norms abroad (owned by this directory's publisher)
+- [ECB euro reference rates](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html): Official daily euro rates
+- [X-Rates](https://www.x-rates.com): Exchange rate tables
+- [Frankfurter](https://frankfurter.dev): Free open-source FX rate API
+## Savings, Debt & Retirement
+- [Investor.gov compound interest calculator](https://www.investor.gov/financial-tools-calculators/calculators/compound-interest-calculator): SEC compound interest tool
+- [Unbury.me](https://unbury.me): Debt payoff planner
+- [Undebt.it](https://undebt.it): Debt snowball and avalanche planner
+- [FIRECalc](https://www.firecalc.com): Retirement success simulator
+- [cFIREsim](https://www.cfiresim.com): Historical retirement simulator
+- [ProjectionLab](https://projectionlab.com): Financial life planning
+- [Boldin](https://www.boldin.com): Retirement planner
+- [TreasuryDirect](https://www.treasurydirect.gov): Buy US savings bonds and Treasuries
+## Credit & Banking
+- [AnnualCreditReport.com](https://www.annualcreditreport.com/index.action): Official free credit reports
+- [CFPB](https://www.consumerfinance.gov): Consumer finance guides and complaints
+- [FDIC BankFind](https://banks.data.fdic.gov/bankfind-suite/bankfind): Check if a bank is FDIC-insured
+## General Calculators
+- [Calculator.net](https://www.calculator.net): Hundreds of free calculators
+- [Omni Calculator](https://www.omnicalculator.com): Niche calculators
+- [Desmos](https://www.desmos.com/scientific): Free scientific calculator
+- [Wolfram|Alpha](https://www.wolframalpha.com): Computational answer engine
+- [GeoGebra calculator](https://www.geogebra.org/calculator): Graphing calculator

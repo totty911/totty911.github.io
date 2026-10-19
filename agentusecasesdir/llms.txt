@@ -1,0 +1,75 @@
+# AgentPlaybooks
+> AI agent tools, frameworks & use cases. Free curated directory of 65 listings. Links checked 2026-10-19.
+
+## Agent platforms
+- [Zapier Agents](https://zapier.com/agents): No-code AI agents
+- [n8n](https://n8n.io): Open-source workflow automation
+- [Relevance AI](https://relevanceai.com): AI workforce builder
+- [Lindy](https://www.lindy.ai): AI assistants for workflows
+- [Make](https://www.make.com): Visual automation with AI agents
+- [Microsoft Copilot Studio](https://www.microsoft.com/en-us/copilot/products/copilot-studio): Build custom copilots and agents
+- [Gemini Enterprise Agent Platform](https://cloud.google.com/products/gemini-enterprise-agent-platform): Google Cloud agent platform
+- [Amazon Bedrock Agents](https://aws.amazon.com/bedrock/agents/): AWS managed agents
+- [Salesforce Agentforce](https://www.salesforce.com/agentforce/): CRM-native AI agents
+- [Dify](https://dify.ai): Open-source LLM app and agent builder
+- [Flowise](https://flowiseai.com): Open-source visual agent builder
+- [Gumloop](https://www.gumloop.com): No-code AI automation
+- [Botpress](https://botpress.com): AI agent and chatbot platform
+- [Voiceflow](https://www.voiceflow.com): Conversational agent builder
+- [Stack AI](https://www.stackai.com/): Enterprise agent builder
+- [Langflow](https://www.langflow.org): Visual builder for agents
+- [Activepieces](https://www.activepieces.com): Open-source automation
+## Voice agents
+- [Vapi](https://vapi.ai): Voice AI agent platform
+- [Retell AI](https://www.retellai.com): AI phone agents
+- [Bland AI](https://www.bland.ai): Enterprise AI phone calls
+- [ElevenLabs Agents](https://elevenlabs.io/conversational-ai): Conversational voice agents
+## Frameworks & SDKs
+- [LangChain](https://www.langchain.com): LLM app framework
+- [LangGraph](https://www.langchain.com/langgraph): Stateful agent orchestration
+- [CrewAI](https://crewai.com/): Multi-agent framework
+- [Microsoft AutoGen](https://microsoft.github.io/autogen/): Multi-agent conversation framework
+- [LlamaIndex](https://www.llamaindex.ai): Data and agent framework
+- [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/): OpenAI's agent SDK
+- [Semantic Kernel](https://learn.microsoft.com/en-us/semantic-kernel/): Microsoft agent SDK
+- [Pydantic AI](https://pydantic.dev/docs/ai/overview/): Typed Python agent framework
+- [Haystack](https://haystack.deepset.ai): Open-source LLM pipelines
+- [smolagents](https://huggingface.co/docs/smolagents/index): Hugging Face lightweight agents
+- [Mastra](https://mastra.ai): TypeScript agent framework
+- [Vercel AI SDK](https://ai-sdk.dev): TypeScript toolkit for AI apps
+- [Google Agent Development Kit](https://adk.dev/): Google's open-source agent SDK
+- [Agno](https://www.agno.com): Python multi-agent framework
+- [DSPy](https://dspy.ai): Programming, not prompting, LMs
+- [Letta](https://www.letta.com): Stateful agents with memory
+## Coding agents
+- [Cursor](https://cursor.com): AI code editor with agents
+- [GitHub Copilot](https://github.com/features/copilot): AI pair programmer and coding agent
+- [Claude Code](https://claude.com/product/claude-code): Terminal coding agent
+- [OpenAI Codex](https://openai.com/codex/): OpenAI's coding agent
+- [Devin](https://devin.ai): Autonomous software engineer
+- [Aider](https://aider.chat): Open-source terminal pair programmer
+- [Cline](https://cline.bot): Open-source coding agent for VS Code
+- [Gemini CLI](https://github.com/google-gemini/gemini-cli): Google's open-source terminal agent
+- [Replit](https://replit.com): Build apps with Replit Agent
+- [Bolt](https://bolt.new): Prompt-to-app builder
+- [Lovable](https://lovable.dev): Prompt-to-app builder
+- [v0](https://v0.app): Vercel's app generator
+## Browser & computer-use agents
+- [Browserbase](https://www.browserbase.com): Headless browsers for agents
+- [Browser Use](https://browser-use.com): Open-source browser agent library
+- [Playwright MCP](https://github.com/microsoft/playwright-mcp): Browser control over MCP
+- [Steel](https://steel.dev): Browser API for agents
+- [Skyvern](https://www.skyvern.com): AI browser workflow automation
+## Observability & evals
+- [LangSmith](https://www.langchain.com/langsmith/observability): Tracing and evals for LLM apps
+- [Langfuse](https://langfuse.com): Open-source LLM observability
+- [Arize Phoenix](https://arize.com/phoenix/): Open-source tracing and evals
+- [Helicone](https://www.helicone.ai): LLM observability gateway
+- [Braintrust](https://www.braintrust.dev): Evals and prompt playground
+- [AgentOps](https://www.agentops.ai): Agent monitoring
+## Protocols & use-case guides
+- [Model Context Protocol](https://modelcontextprotocol.io/docs/2026-07-28/getting-started/intro): Open standard for tool access
+- [MCP reference servers](https://github.com/modelcontextprotocol/servers): Official MCP server examples
+- [Agent2Agent (A2A) protocol](https://a2a-protocol.org): Open agent-to-agent protocol
+- [Anthropic: Building effective agents](https://www.anthropic.com/engineering/building-effective-agents): Agent design patterns
+- [Zapier agent templates](https://zapier.com/templates): Ready-made automation templates
