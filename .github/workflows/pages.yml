@@ -23,6 +23,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      # This repo's Pages source is still "deploy from branch", and that
+      # publish cannot be switched from here. Let it finish, then replace it
+      # with an artifact that omits _src (Jekyll exclude does not apply while
+      # .nojekyll is present).
+      - name: Wait for the branch publish to finish
+        run: sleep 90
       - name: Assemble site without generator sources
         run: |
           rm -rf _site
