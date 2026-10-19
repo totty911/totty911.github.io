@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://totty911.github.io/contractoraitools/sitemap.xml

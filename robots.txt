@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://totty911.github.io/sitemap.xml
+Sitemap: https://totty911.github.io/contractoraitools/sitemap.xml
+Sitemap: https://totty911.github.io/moneytoolsdir/sitemap.xml
+Sitemap: https://totty911.github.io/agentusecasesdir/sitemap.xml

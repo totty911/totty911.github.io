@@ -1,0 +1,5 @@
+# .nojekyll keeps GitHub Pages from running Jekyll. This exclude applies
+# if Jekyll is ever turned on, so the generator under _src is not published.
+exclude:
+  - _src
+  - .github
