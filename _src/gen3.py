@@ -9,6 +9,12 @@ U = json.load(open("urlcheck.json"))
 
 # Single contact address for sponsor, contact, and Organization schema.
 CONTACT_EMAIL = "hello@tipslice.com"
+# $99/month Stripe Payment Link for each directory. A sponsor page uses only its own.
+CHECKOUT_LINKS = {
+    "contractoraitools": "https://buy.stripe.com/bJe00ibkqfwR7w20UY3ZK01",
+    "moneytoolsdir": "https://buy.stripe.com/14A5kC4W2gAV03AdHK3ZK02",
+    "agentusecasesdir": "https://buy.stripe.com/6oU4gy74a84p8A6avy3ZK03",
+}
 HOST = "https://totty911.github.io"
 INDEXNOW_KEY = "6de77d11846e4d2eaf81163942182a19"
 TODAY = "2026-10-19"
@@ -265,7 +271,8 @@ for slug, (t, tag, cats, sp, aud, bg, accent, letter) in SITES.items():
             f"<li>Home-page featured spot (rotates among sponsors)</li>"
             f"<li>Sponsored links are marked rel=\"sponsored\", following Google's link guidelines</li></ul>"
             f"<h2>Price</h2><p><b>Introductory price: $99/month</b>, one category. Cancel any time.</p>"
-            f"<p>Online checkout is not live yet. To reserve a spot, email <a href='mailto:{CONTACT_EMAIL}'>{CONTACT_EMAIL}</a> and you'll receive a payment link.</p>",
+            f'<p><a href="{CHECKOUT_LINKS[slug]}" rel="sponsored noopener" style="display:inline-block;background:#0a58ca;color:#fff;text-decoration:none;font-weight:700;padding:.65em 1.1em;border-radius:8px">Start sponsorship ($99/month)</a></p>'
+            f"<p>After checkout, email <a href='mailto:{CONTACT_EMAIL}'>{CONTACT_EMAIL}</a> with your product name, the category you want, your logo and a one-line description. Your Featured card goes live after a quick manual review. We may decline sponsors that aren't a fit and refund them.</p>",
         ),
         "about": (
             f"How we curate | {t}",
@@ -408,8 +415,19 @@ for slug in SITES:
         fail(f"schema missing on {slug} home")
     if CONTACT_EMAIL not in open(f"{ROOT}/{slug}/contact.html", encoding="utf-8").read():
         fail(f"contact email missing {slug}")
-    if CONTACT_EMAIL not in open(f"{ROOT}/{slug}/sponsor.html", encoding="utf-8").read():
+    sponsor_html = open(f"{ROOT}/{slug}/sponsor.html", encoding="utf-8").read()
+    if CONTACT_EMAIL not in sponsor_html:
         fail(f"sponsor email missing {slug}")
+    if "not live yet" in sponsor_html.lower():
+        fail(f"checkout still offline in {slug}")
+    own = CHECKOUT_LINKS[slug]
+    if sponsor_html.count(own) != 1:
+        fail(f"checkout link count {sponsor_html.count(own)} in {slug}")
+    for other, url in CHECKOUT_LINKS.items():
+        if other != slug and url in sponsor_html:
+            fail(f"wrong checkout link in {slug}")
+    if "Start sponsorship ($99/month)" not in sponsor_html:
+        fail(f"checkout button missing in {slug}")
     for tip in re.findall(r'href="(https://tipslice\.com[^"]*)"', open(f"{ROOT}/{slug}/index.html", encoding="utf-8").read() + open(f"{ROOT}/{slug}/llms.txt", encoding="utf-8").read()):
         if not tip.startswith("https://tipslice.com/"):
             fail(f"tipslice link {tip}")
