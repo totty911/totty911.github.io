@@ -22,6 +22,9 @@ TODAYL = "October 19, 2026"
 # Sitemap lastmod for this update. TODAY stays the link-check date.
 SITEMAP_LASTMOD = "2026-10-30"
 GA_ID = "G-Q2V68HNZV9"
+# Search Console tag for the hand-written root page. gen3 does not generate that page;
+# a rebuild still puts this exact tag back into its <head> if a write omitted it.
+SITE_VERIFICATION = '<meta name="google-site-verification" content="jQopuFLWYlRp-lygVtel4VNp635U9cYjPN7NNTXaf60" />'
 # Standard GA4 gtag.js snippet, pasted once into <head>.
 GA_SNIPPET = """<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q2V68HNZV9"></script>
@@ -416,6 +419,23 @@ open(f"{ROOT}/sitemap.xml", "w").write(
 def fail(msg):
     raise SystemExit(msg)
 
+def ensure_root_site_verification():
+    path = os.path.join(ROOT, "index.html")
+    text = open(path, encoding="utf-8").read()
+    head_end = text.lower().find("</head>")
+    if head_end < 0:
+        fail("root index has no head")
+    head, rest = text[:head_end], text[head_end:]
+    if head.count(SITE_VERIFICATION) == 1 and SITE_VERIFICATION not in rest:
+        return
+    if SITE_VERIFICATION in text:
+        fail("root verification tag is not exactly once in head")
+    nl = "\n" if "\n" in text else ""
+    text = head + SITE_VERIFICATION + nl + rest
+    open(path, "w", encoding="utf-8").write(text)
+
+ensure_root_site_verification()
+
 for slug in SITES:
     for dirpath, _, files in os.walk(f"{ROOT}/{slug}"):
         for fn in files:
@@ -514,4 +534,8 @@ if len(root_lastmods) != len(SITES) or any(mod != SITEMAP_LASTMOD for mod in roo
     fail(f"root sitemap lastmod {root_lastmods}")
 if open(f"{ROOT}/{INDEXNOW_KEY}.txt", encoding="utf-8").read() != INDEXNOW_KEY + "\n":
     fail("indexnow key file changed")
+root_html = open(f"{ROOT}/index.html", encoding="utf-8").read()
+root_head, root_sep, root_rest = root_html.partition("</head>")
+if not root_sep or root_head.count(SITE_VERIFICATION) != 1 or SITE_VERIFICATION in root_rest or root_html.count(SITE_VERIFICATION) != 1:
+    fail("root verification tag is not exactly once in head")
 print("checks ok")
