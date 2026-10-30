@@ -19,6 +19,19 @@ HOST = "https://totty911.github.io"
 INDEXNOW_KEY = "6de77d11846e4d2eaf81163942182a19"
 TODAY = "2026-10-19"
 TODAYL = "October 19, 2026"
+# Sitemap lastmod for this update. TODAY stays the link-check date.
+SITEMAP_LASTMOD = "2026-10-30"
+GA_ID = "G-Q2V68HNZV9"
+# Standard GA4 gtag.js snippet, pasted once into <head>.
+GA_SNIPPET = """<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q2V68HNZV9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q2V68HNZV9');
+</script>"""
 ROOT = os.path.abspath(os.path.join(HERE, ".."))
 
 # urlcheck.json is keyed by the pre-move URLs. Listings now use the curl final URL.
@@ -131,6 +144,16 @@ def write_og(path, name, tagline, url, bg, accent):
 
 CSS = "body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;max-width:1000px;margin:auto;padding:1em;color:#1d1d1f;line-height:1.5}a{color:#0a58ca}nav{display:flex;flex-wrap:wrap;gap:1em;padding:.5em 0;border-bottom:1px solid #eee}.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}.c{border:1px solid #ddd;border-radius:10px;padding:14px;background:#fff}.c h3{margin:.1em 0 .3em;font-size:1.1em}.v{color:#555;font-size:.9em;border-left:3px solid #ddd;padding-left:8px}.chip{display:inline-block;background:#f1f3f5;border-radius:99px;padding:.2em .7em;margin:.2em;font-size:.9em;text-decoration:none}.feat{border:2px dashed #f0b400;background:#fffbea}table{border-collapse:collapse;width:100%;font-size:.92em}td,th{border-bottom:1px solid #eee;padding:6px;text-align:left}small{color:#666}footer{margin-top:2em;border-top:1px solid #eee;padding-top:1em}main{display:block}"
 
+def other_tools(current_name):
+    parts = []
+    for slug, info in SITES.items():
+        name = info[0]
+        if name == current_name:
+            continue
+        parts.append(f'<a href="{HOST}/{slug}/">{e(name)}</a>')
+    parts.append('<a href="https://tipslice.com/">TipSlice</a>')
+    return "<p>Our other free tools: " + " · ".join(parts) + "</p>"
+
 def page(t, title, desc, body, url, root, base):
     if not 120 <= len(desc) <= 160:
         raise SystemExit(f"desc length {len(desc)} for {url}: {desc}")
@@ -147,7 +170,7 @@ def page(t, title, desc, body, url, root, base):
         f'<meta name="twitter:image" content="{og}">'
     )
     return (
-        f'<!doctype html><html lang=en><head><meta charset=utf-8>'
+        f'<!doctype html><html lang=en><head>{GA_SNIPPET}<meta charset=utf-8>'
         f'<meta name=viewport content="width=device-width,initial-scale=1">'
         f'<title>{e(title)}</title><meta name=description content="{e(desc)}">'
         f'<link rel=canonical href="{url}">'
@@ -163,7 +186,7 @@ def page(t, title, desc, body, url, root, base):
         f'<a href="{root}contact.html">Contact</a>'
         f'<a href="{root}privacy.html">Privacy</a></nav>'
         f'<main>{body}</main>'
-        f'<footer><p><small>Listings are editorial and free. Sponsored placements, when sold, are labeled "Featured". '
+        f'<footer>{other_tools(t)}<p><small>Listings are editorial and free. Sponsored placements, when sold, are labeled "Featured". '
         f'Not affiliated with listed vendors. Links last checked {TODAYL}. Vendor descriptions are quoted from each vendor\'s own homepage meta description.</small></p></footer>'
         f'</body></html>'
     )
@@ -253,7 +276,7 @@ for slug, (t, tag, cats, sp, aud, bg, accent, letter) in SITES.items():
         f"Contact {t} about a listing suggestion, a correction, or a sponsorship. Email {CONTACT_EMAIL} and each note is reviewed.",
     ], slug + " contact")
     privacy_desc = pick_desc([
-        f"{t} privacy policy: no accounts, no cookies set by us, no analytics, and no personal data collected on this static directory.",
+        f"{t} privacy policy: no accounts. Google Analytics measures page visits. GitHub Pages may log IP address and user agent.",
     ], slug + " privacy")
     P = {
         "index": (
@@ -294,7 +317,14 @@ for slug, (t, tag, cats, sp, aud, bg, accent, letter) in SITES.items():
         "privacy": (
             f"Privacy | {t}",
             privacy_desc,
-            "<h1>Privacy</h1><p>No accounts, no cookies set by us, no analytics, and no personal data collected. Our host (GitHub Pages) may log standard server data such as IP address and user agent.</p>",
+            f"<h1>Privacy</h1>"
+            f"<p>{e(t)} is a static directory. There are no accounts, and these pages do not ask you to submit personal information. We do not set our own cookies. Our host (GitHub Pages) may log standard server data such as IP address and user agent.</p>"
+            f"<h2>Google Analytics</h2>"
+            f"<p>{e(t)} loads Google Analytics with gtag.js. "
+            f'<a href="https://policies.google.com/technologies/partner-sites">How Google uses information from sites or apps that use our services</a> '
+            f"explains that when you visit a site using analytics tools such as Google Analytics, your browser automatically sends certain information to Google, including the URL of the page you are visiting and your IP address, and that Google may set cookies on your browser or read cookies that are already there. "
+            f"Many sites use Google Analytics to understand how visitors engage with them. "
+            f'If you do not want Analytics to be used in your browser, you can install the <a href="https://tools.google.com/dlpage/gaoptout">Google Analytics opt-out browser add-on</a>.</p>',
         ),
     }
     for k, (ti, de, bo) in P.items():
@@ -357,7 +387,7 @@ for slug, (t, tag, cats, sp, aud, bg, accent, letter) in SITES.items():
     open(f"{d}/sitemap.xml", "w").write(
         '<?xml version="1.0" encoding="UTF-8"?>'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
-        + "".join(f"<url><loc>{u}</loc><lastmod>{TODAY}</lastmod></url>" for u in urls)
+        + "".join(f"<url><loc>{u}</loc><lastmod>{SITEMAP_LASTMOD}</lastmod></url>" for u in urls)
         + "</urlset>"
     )
     open(f"{d}/llms.txt", "w").write(
@@ -379,7 +409,7 @@ open(f"{ROOT}/robots.txt", "w").write(
 open(f"{ROOT}/sitemap.xml", "w").write(
     '<?xml version="1.0" encoding="UTF-8"?>'
     '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
-    + "".join(f"<sitemap><loc>{loc}</loc><lastmod>{TODAY}</lastmod></sitemap>" for loc in sitemap_locs)
+    + "".join(f"<sitemap><loc>{loc}</loc><lastmod>{SITEMAP_LASTMOD}</lastmod></sitemap>" for loc in sitemap_locs)
     + "</sitemapindex>"
 )
 
@@ -396,6 +426,28 @@ for slug in SITES:
                 if bad in text.lower() if bad != "surge.sh" else bad in text:
                     fail(f"{bad} in {dirpath}/{fn}")
             if fn.endswith(".html"):
+                head, sep, rest = text.partition("</head>")
+                if not sep:
+                    fail(f"head missing in {dirpath}/{fn}")
+                if head.count(GA_SNIPPET) != 1 or rest.count(GA_ID) != 0:
+                    fail(f"ga tag not exactly once in head: {dirpath}/{fn}")
+                if head.count(f"gtag/js?id={GA_ID}") != 1 or head.count(f"gtag('config', '{GA_ID}')") != 1:
+                    fail(f"ga snippet incomplete in {dirpath}/{fn}")
+                footer = text.split("<footer>", 1)[-1].split("</footer>", 1)[0]
+                tools, _, _ = footer.partition("</p>")
+                if not tools.startswith("<p>Our other free tools:"):
+                    fail(f"footer tools missing in {dirpath}/{fn}")
+                if "nofollow" in tools.lower() or "rel=" in tools.lower():
+                    fail(f"footer tools links are not plain in {dirpath}/{fn}")
+                if tools.count("https://tipslice.com/") != 1:
+                    fail(f"tipslice footer link in {dirpath}/{fn}")
+                for other, info in SITES.items():
+                    href = f"{HOST}/{other}/"
+                    if other == slug:
+                        if href in tools:
+                            fail(f"self link in footer tools {dirpath}/{fn}")
+                    elif tools.count(href) != 1 or info[0] not in tools:
+                        fail(f"missing footer link {other} in {dirpath}/{fn}")
                 if text.lower().count("<main") != 1 or text.lower().count("</main>") != 1:
                     fail(f"main landmark missing in {dirpath}/{fn}")
                 if "og:image" not in text:
@@ -428,6 +480,25 @@ for slug in SITES:
             fail(f"wrong checkout link in {slug}")
     if "Start sponsorship ($99/month)" not in sponsor_html:
         fail(f"checkout button missing in {slug}")
+    privacy_html = open(f"{ROOT}/{slug}/privacy.html", encoding="utf-8").read()
+    for needed in (
+        "https://policies.google.com/technologies/partner-sites",
+        "How Google uses information from sites or apps that use our services",
+        "https://tools.google.com/dlpage/gaoptout",
+        "Google Analytics opt-out browser add-on",
+        "loads Google Analytics with gtag.js",
+    ):
+        if needed not in privacy_html:
+            fail(f"privacy disclosure missing {needed!r} in {slug}")
+    if "nofollow" in privacy_html.lower():
+        fail(f"nofollow in privacy {slug}")
+    if "no analytics" in privacy_html.lower():
+        fail(f"stale no-analytics claim in {slug}")
+    sitemap_xml = open(f"{ROOT}/{slug}/sitemap.xml", encoding="utf-8").read()
+    locs = re.findall(r"<loc>(.*?)</loc>", sitemap_xml)
+    lastmods = re.findall(r"<lastmod>(.*?)</lastmod>", sitemap_xml)
+    if len(locs) != len(lastmods) or any(mod != SITEMAP_LASTMOD for mod in lastmods):
+        fail(f"sitemap lastmod in {slug}: {lastmods}")
     for tip in re.findall(r'href="(https://tipslice\.com[^"]*)"', open(f"{ROOT}/{slug}/index.html", encoding="utf-8").read() + open(f"{ROOT}/{slug}/llms.txt", encoding="utf-8").read()):
         if not tip.startswith("https://tipslice.com/"):
             fail(f"tipslice link {tip}")
@@ -437,4 +508,10 @@ if "Disallow:" in robots:
     fail("root robots disallows something")
 if robots.count("Sitemap:") != 1 + len(SITES):
     fail("sitemap lines " + robots)
+root_sitemap = open(f"{ROOT}/sitemap.xml", encoding="utf-8").read()
+root_lastmods = re.findall(r"<lastmod>(.*?)</lastmod>", root_sitemap)
+if len(root_lastmods) != len(SITES) or any(mod != SITEMAP_LASTMOD for mod in root_lastmods):
+    fail(f"root sitemap lastmod {root_lastmods}")
+if open(f"{ROOT}/{INDEXNOW_KEY}.txt", encoding="utf-8").read() != INDEXNOW_KEY + "\n":
+    fail("indexnow key file changed")
 print("checks ok")
