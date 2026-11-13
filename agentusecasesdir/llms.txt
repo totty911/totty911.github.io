@@ -39,7 +39,7 @@
 - [Vercel AI SDK](https://ai-sdk.dev): TypeScript toolkit for AI apps
 - [Google Agent Development Kit](https://adk.dev/): Google's open-source agent SDK
 - [Agno](https://www.agno.com): Python multi-agent framework
-- [DSPy](https://dspy.ai): Programming, not prompting, LMs
+- [DSPy](https://dspy.ai/current/): Programming, not prompting, LMs
 - [Letta](https://www.letta.com): Stateful agents with memory
 ## Coding agents
 - [Cursor](https://cursor.com): AI code editor with agents
@@ -71,5 +71,5 @@
 - [Model Context Protocol](https://modelcontextprotocol.io/docs/2026-07-28/getting-started/intro): Open standard for tool access
 - [MCP reference servers](https://github.com/modelcontextprotocol/servers): Official MCP server examples
 - [Agent2Agent (A2A) protocol](https://a2a-protocol.org): Open agent-to-agent protocol
-- [Anthropic: Building effective agents](https://www.anthropic.com/engineering/building-effective-agents): Agent design patterns
+- [Anthropic: Building effective agents](https://www.anthropic.com/research/building-effective-agents): Agent design patterns
 - [Zapier agent templates](https://zapier.com/templates): Ready-made automation templates

@@ -21,6 +21,8 @@ TODAY = "2026-10-19"
 TODAYL = "October 19, 2026"
 # Sitemap lastmod for this update. TODAY stays the link-check date.
 SITEMAP_LASTMOD = "2026-10-30"
+# Contact pages and listings whose href changed on 2026-11-13.
+CONTENT_LASTMOD = "2026-11-13"
 GA_ID = "G-Q2V68HNZV9"
 # Search Console tag for the hand-written root page. gen3 does not generate that page;
 # a rebuild still puts this exact tag back into its <head> if a write omitted it.
@@ -59,6 +61,7 @@ OLD_OF = {
     "https://www.langchain.com/langsmith/observability": "https://www.langchain.com/langsmith",
     "https://modelcontextprotocol.io/docs/2026-07-28/getting-started/intro": "https://modelcontextprotocol.io",
     "https://www.anthropic.com/engineering/building-effective-agents": "https://www.anthropic.com/research/building-effective-agents",
+    "https://dspy.ai/current/": "https://dspy.ai",
     "https://tipslice.com/": "https://tipslice.com",
 }
 
@@ -315,7 +318,16 @@ for slug, (t, tag, cats, sp, aud, bg, accent, letter) in SITES.items():
         "contact": (
             f"Contact | {t}",
             contact_desc,
-            f"<h1>Contact</h1><p>Suggestions, corrections and sponsorship: <a href='mailto:{CONTACT_EMAIL}'>{CONTACT_EMAIL}</a>.</p>",
+            f"<h1>Contact {e(t)}</h1>"
+            f"<p>Email <a href='mailto:{CONTACT_EMAIL}'>{CONTACT_EMAIL}</a> about {e(t)}, a directory for {e(aud)}.</p>"
+            f"<h2>What to write about</h2><ul>"
+            f"<li>Tool suggestions: the product name, its official website, and the category it belongs in.</li>"
+            f"<li>Listing corrections: the tool name and what is wrong or out of date.</li>"
+            f"<li>Sponsorship questions: the product name, the category you want, and a one-line description. Price and what a featured card includes are on the <a href=\"sponsor.html\">sponsor page</a>.</li>"
+            f"</ul>"
+            f"<h2>What to expect</h2>"
+            f"<p>A person reads each note. We do not promise a reply by a particular day or time. Suggestions and corrections are reviewed, and a change is not guaranteed. We may decline a sponsorship that is not a fit.</p>"
+            f"<p>How {e(t)} handles analytics is on the <a href=\"privacy.html\">privacy page</a>.</p>",
         ),
         "privacy": (
             f"Privacy | {t}",
@@ -387,10 +399,16 @@ for slug, (t, tag, cats, sp, aud, bg, accent, letter) in SITES.items():
             )
         )
     open(f"{d}/robots.txt", "w").write(f"User-agent: *\nAllow: /\nSitemap: {base}sitemap.xml\n")
+    def page_lastmod(url):
+        rel = "index.html" if url == base else url[len(base):]
+        text = open(os.path.join(d, rel), encoding="utf-8").read()
+        if rel == "contact.html" or "https://dspy.ai/current/" in text or "https://www.anthropic.com/research/building-effective-agents" in text:
+            return CONTENT_LASTMOD
+        return SITEMAP_LASTMOD
     open(f"{d}/sitemap.xml", "w").write(
         '<?xml version="1.0" encoding="UTF-8"?>'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
-        + "".join(f"<url><loc>{u}</loc><lastmod>{SITEMAP_LASTMOD}</lastmod></url>" for u in urls)
+        + "".join(f"<url><loc>{u}</loc><lastmod>{page_lastmod(u)}</lastmod></url>" for u in urls)
         + "</urlset>"
     )
     open(f"{d}/llms.txt", "w").write(
@@ -412,7 +430,7 @@ open(f"{ROOT}/robots.txt", "w").write(
 open(f"{ROOT}/sitemap.xml", "w").write(
     '<?xml version="1.0" encoding="UTF-8"?>'
     '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
-    + "".join(f"<sitemap><loc>{loc}</loc><lastmod>{SITEMAP_LASTMOD}</lastmod></sitemap>" for loc in sitemap_locs)
+    + "".join(f"<sitemap><loc>{loc}</loc><lastmod>{CONTENT_LASTMOD}</lastmod></sitemap>" for loc in sitemap_locs)
     + "</sitemapindex>"
 )
 
@@ -474,6 +492,8 @@ for slug in SITES:
                     fail(f"og:image missing in {dirpath}/{fn}")
                 if re.search(r'href="[^"]*index\.html', text):
                     fail(f"index.html link in {dirpath}/{fn}")
+                if 'href="https://dspy.ai"' in text or 'href="https://www.anthropic.com/engineering/building-effective-agents"' in text:
+                    fail(f"stale vendor redirect in {dirpath}/{fn}")
                 if 'rel=canonical href="' + HOST not in text:
                     fail(f"canonical host in {dirpath}/{fn}")
                 m = re.search(r'name=description content="([^"]*)"', text)
@@ -485,8 +505,27 @@ for slug in SITES:
     home = open(f"{ROOT}/{slug}/index.html", encoding="utf-8").read()
     if '"@type": "Organization"' not in home or '"@type": "WebSite"' not in home:
         fail(f"schema missing on {slug} home")
-    if CONTACT_EMAIL not in open(f"{ROOT}/{slug}/contact.html", encoding="utf-8").read():
+    contact_html = open(f"{ROOT}/{slug}/contact.html", encoding="utf-8").read()
+    if CONTACT_EMAIL not in contact_html:
         fail(f"contact email missing {slug}")
+    main_m = re.search(r"<main>(.*)</main>", contact_html)
+    if not main_m:
+        fail(f"contact main missing {slug}")
+    contact_words = re.findall(r"[A-Za-z0-9']+", re.sub(r"<[^>]+>", " ", main_m.group(1)))
+    if len(contact_words) < 40:
+        fail(f"contact page still thin ({len(contact_words)} words) {slug}")
+    for needed in (
+        "Tool suggestions:",
+        "Listing corrections:",
+        "Sponsorship questions:",
+        'href="sponsor.html"',
+        'href="privacy.html"',
+        "do not promise a reply by a particular day or time",
+    ):
+        if needed not in contact_html:
+            fail(f"contact content missing {needed!r} in {slug}")
+    if f"{HOST}/{slug}/contact.html" not in open(f"{ROOT}/{slug}/sitemap.xml", encoding="utf-8").read():
+        fail(f"contact dropped from sitemap {slug}")
     sponsor_html = open(f"{ROOT}/{slug}/sponsor.html", encoding="utf-8").read()
     if CONTACT_EMAIL not in sponsor_html:
         fail(f"sponsor email missing {slug}")
@@ -517,8 +556,10 @@ for slug in SITES:
     sitemap_xml = open(f"{ROOT}/{slug}/sitemap.xml", encoding="utf-8").read()
     locs = re.findall(r"<loc>(.*?)</loc>", sitemap_xml)
     lastmods = re.findall(r"<lastmod>(.*?)</lastmod>", sitemap_xml)
-    if len(locs) != len(lastmods) or any(mod != SITEMAP_LASTMOD for mod in lastmods):
+    if len(locs) != len(lastmods) or any(mod not in {SITEMAP_LASTMOD, CONTENT_LASTMOD} for mod in lastmods):
         fail(f"sitemap lastmod in {slug}: {lastmods}")
+    if dict(zip(locs, lastmods)).get(f"{HOST}/{slug}/contact.html") != CONTENT_LASTMOD:
+        fail(f"contact lastmod in {slug}")
     for tip in re.findall(r'href="(https://tipslice\.com[^"]*)"', open(f"{ROOT}/{slug}/index.html", encoding="utf-8").read() + open(f"{ROOT}/{slug}/llms.txt", encoding="utf-8").read()):
         if not tip.startswith("https://tipslice.com/"):
             fail(f"tipslice link {tip}")
@@ -530,7 +571,7 @@ if robots.count("Sitemap:") != 1 + len(SITES):
     fail("sitemap lines " + robots)
 root_sitemap = open(f"{ROOT}/sitemap.xml", encoding="utf-8").read()
 root_lastmods = re.findall(r"<lastmod>(.*?)</lastmod>", root_sitemap)
-if len(root_lastmods) != len(SITES) or any(mod != SITEMAP_LASTMOD for mod in root_lastmods):
+if len(root_lastmods) != len(SITES) or any(mod != CONTENT_LASTMOD for mod in root_lastmods):
     fail(f"root sitemap lastmod {root_lastmods}")
 if open(f"{ROOT}/{INDEXNOW_KEY}.txt", encoding="utf-8").read() != INDEXNOW_KEY + "\n":
     fail("indexnow key file changed")
